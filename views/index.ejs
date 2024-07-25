@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital City Quiz</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body id="app">
+  <form class="container" action="/submit" method="post">
+    <div class="horizontal-container">
+      <h3>
+        Total Score:
+        <span id="score">
+          <%= locals.totalScore ? totalScore : "0" %>
+        </span>
+      </h3>
+
+    </div>
+    <div id="co">
+        <h1 id="countryName">
+            <%=question.country %>
+          </h1>
+          <div class="answer-container">
+            <input type="text" name="answer" id="userInput" placeholder="Enter the capital" autofocus autocomplete="off">
+      
+          </div>
+          <button type="submit">SUBMIT<% if(locals.wasCorrect){ %>
+              <span class="checkmark">✔</span>
+              <% } else if (locals.wasCorrect===false) { %>
+                <span class="cross" id="error">✖</span>
+                <% } %>
+          </button>
+      
+
+
+    </div>
+
+  </form>
+  <script>
+    var wasCorrect = "<%= locals.wasCorrect %>";
+    console.log(wasCorrect + "helllllllllllllllllllllllllllllll")
+    
+    if (wasCorrect === "false") {
+      document.querySelector(".horizontal-container").innerHTML = '<a style = "background-color: blue; font-weight: bold; color: white" href="/" class="restart-button">Restart</a>'
+      document.getElementById("co").innerHTML = '<h1> Game over! Final best score: <%= locals.totalScore %> </h1>';
+      
+     
+    }
+
+
+  </script>
+</body>
+
+</html>
